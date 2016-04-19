@@ -20,7 +20,10 @@
       <td>{{client.address}}</td>
       <td>{{client.phone_number}}</td>
       <td>{{client.sellerType}}</td>
-      <td><button ng-click="client.edit()" class="btn btn-primary">Editar</button><button ng-click="client.delete()"class="btn btn-danger">Borrar</button></td>
+      <td>
+        <a href="#/clients/{{client.id}}" class="btn btn-primary">Editar</a>
+        <button ng-click="client.delete()"class="btn btn-danger">Borrar</button>
+      </td>
     </tr>
   </tbody>
 </table>

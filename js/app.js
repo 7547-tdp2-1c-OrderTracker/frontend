@@ -1,1 +1,1 @@
-var trackermanAdmin = angular.module("TrackermanAdmin", ['ngRoute', 'ui.bootstrap']);
+var trackermanAdmin = angular.module("TrackermanAdmin", ['ngRoute', 'ngResource', 'ui.bootstrap']);
