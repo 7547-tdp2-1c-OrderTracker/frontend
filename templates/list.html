@@ -1,0 +1,26 @@
+<h1>Client List</h1>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Cuil</th>
+      <th>Domicilio</th>
+      <th>Telefono</th>
+      <th>Tipo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="client in clients">
+      <td>{{client.name}}</td>
+      <td>{{client.lastname}}</td>
+      <td>{{client.cuil}}</td>
+      <td>{{client.address}}</td>
+      <td>{{client.phone_number}}</td>
+      <td>{{client.sellerType}}</td>
+      <td><button ng-click="client.edit()" class="btn btn-primary">Editar</button><button ng-click="client.delete()"class="btn btn-danger">Borrar</button></td>
+    </tr>
+  </tbody>
+</table>

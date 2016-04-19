@@ -1,11 +1,22 @@
 <html>
 <head>
-<script src="js/index.js"></script>
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular/angular-route.js"></script>
+<script src="lib/angular/ui-bootstrap-tpls-1.0.3.min.js"></script>
+<script src="lib/angular/ui-bootstrap-custom-tpls-1.0.3.min.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/routes.js"></script>
+<script src="js/controllers.js"></script>
+
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 </head>
 
 <body>
+<div ng-app="TrackermanAdmin">
+  <div ng-view></div>
+</div>
 </body>
 
 </html>
