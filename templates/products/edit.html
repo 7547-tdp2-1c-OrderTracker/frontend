@@ -1,0 +1,43 @@
+<h1>Editar producto</h1>
+
+<form>
+  <div class="form-group">
+    <label>Nombre:</label>
+    <input ng-model="entity.name" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Marca:</label>
+    <input ng-model="entity.brand" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Descripcion:</label>
+    <input ng-model="entity.description" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Stock:</label>
+    <input type="number" ng-model="entity.stock" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Precio Min:</label>
+    <input type="number" ng-model="entity.retailPrice" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Precio May:</label>
+    <input type="number" ng-model="entity.wholesalePrice" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Moneda:</label>
+    <input ng-model="entity.currency" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Picture:</label>
+    <input ng-model="entity.picture" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Thumbnail:</label>
+    <input ng-model="entity.thumbnail" class="form-control"/>
+  </div>
+</form>
+
+<a href="{{backUrl}}" class="btn btn-primary">back</a>
+<button ng-show="entity" ng-click="save()" class="btn btn-primary">save</button>

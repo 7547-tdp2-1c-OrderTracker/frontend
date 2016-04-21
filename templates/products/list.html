@@ -1,0 +1,29 @@
+<h1>Lista de productos</h1>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Marca</th>
+      <th>Stock</th>
+      <th>Precio Min.</th>
+      <th>Precio May.</th>
+      <th>Moneda</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="product in entities">
+      <td>{{product.name}}</td>
+      <td>{{product.brand}}</td>
+      <td>{{product.stock}}</td>
+      <td>{{product.retailPrice}}</td>
+      <td>{{product.wholesalePrice}}</td>
+      <td>{{product.currency}}</td>
+      <td>
+        <a href="#/products/{{product.id}}" class="btn btn-primary">Editar</a>
+        <button ng-click="product.delete()"class="btn btn-danger">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
