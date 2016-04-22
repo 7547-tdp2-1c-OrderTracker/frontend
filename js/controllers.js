@@ -1,6 +1,6 @@
 var trackermanAdmin = angular.module("TrackermanAdmin");
 
-var baseUrl = "https://trackerman-api.herokuapp.com";
+var baseUrl = "https://powerful-hollows-15939.herokuapp.com";
 
 var listController = function(pluralName) {
   return ["$scope", "$http", "$resource", function($scope, $http, $resource) {
@@ -32,7 +32,13 @@ var listController = function(pluralName) {
 var editController = function(pluralName, options) {
   options = options || {};
   return ["$scope", "$http", "$resource", "$routeParams", "$window", function($scope, $http, $resource, $routeParams, $window) {
-    var Entity = $resource(baseUrl + "/v1/"+pluralName+"/:id", {id:"@id"}, {save: {method: 'PUT'}});
+    var Entity;
+
+    if ($routeParams.id === "new") {
+      Entity = $resource(baseUrl + "/v1/"+pluralName);
+    } else {
+      Entity = $resource(baseUrl + "/v1/"+pluralName+"/:id", {id:"@id"}, {save: {method: 'PUT'}});
+    }
 
     var processRelation = function(fieldName, relData) {
       $http.get(baseUrl + "/v1/" + relData.pluralName + "?limit=999999").then(function(response) {
@@ -53,9 +59,13 @@ var editController = function(pluralName, options) {
       }
     }
 
-    Entity.get({id: $routeParams.id}).$promise.then(function(entity) {
-      $scope.entity = entity;
-    });
+    if ($routeParams.id !== "new") {
+      Entity.get({id: $routeParams.id}).$promise.then(function(entity) {
+        $scope.entity = entity;
+      });
+    } else {
+      $scope.entity = new Entity();
+    }
 
     $scope.save = function() {
       $scope.entity.$save(function(entity) {
