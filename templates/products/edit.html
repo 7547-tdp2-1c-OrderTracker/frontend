@@ -6,6 +6,10 @@
     <input ng-model="entity.name" class="form-control"/>
   </div>
   <div class="form-group">
+    <label>Marca:</label>
+    <select ng-options="brand.id as brand.name for brand in relation.brands" ng-model="entity.brand_id" class="form-control"></select>
+  </div>
+  <div class="form-group">
     <label>Descripcion:</label>
     <input ng-model="entity.description" class="form-control"/>
   </div>

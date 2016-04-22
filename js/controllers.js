@@ -24,9 +24,31 @@ var listController = function(pluralName) {
   }];
 };
 
-var editController = function(pluralName) {
-  return ["$scope", "$resource", "$routeParams", "$window", function($scope, $resource, $routeParams, $window) {
+var editController = function(pluralName, options) {
+  options = options || {};
+  return ["$scope", "$http", "$resource", "$routeParams", "$window", function($scope, $http, $resource, $routeParams, $window) {
     var Entity = $resource(baseUrl + "/v1/"+pluralName+"/:id", {id:"@id"}, {save: {method: 'PUT'}});
+
+    var processRelation = function(fieldName, relData) {
+      $http.get(baseUrl + "/v1/" + relData.pluralName + "?limit=999999").then(function(response) {
+        $scope.relation = $scope.relation || {};
+        $scope.relation[relData.pluralName] = response.data.results.map(function(entity) {
+          return {
+            id: entity.id,
+            name: entity[relData.field]
+          };
+        });
+      });
+    };
+
+    $scope.brand_id=2;
+
+    if (options.relation) {
+      for (var fieldName in options.relation) {
+        var relData = options.relation[fieldName];
+        processRelation(fieldName, relData);
+      }
+    }
 
     Entity.get({id: $routeParams.id}).$promise.then(function(entity) {
       $scope.entity = entity;
@@ -43,7 +65,14 @@ var editController = function(pluralName) {
 };
 
 trackermanAdmin.controller("ProductListController", listController("products"));
-trackermanAdmin.controller("ProductEditController", editController("products"));
+trackermanAdmin.controller("ProductEditController", editController("products", {
+  relation: {
+    brand_id: {
+      pluralName: 'brands',
+      field: 'name'
+    }
+  }
+}));
 
 trackermanAdmin.controller("ClientListController", listController("clients"));
 trackermanAdmin.controller("ClientEditController", editController("clients"));
