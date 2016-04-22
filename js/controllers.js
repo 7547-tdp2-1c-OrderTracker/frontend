@@ -30,7 +30,11 @@ var listController = function(pluralName) {
 };
 
 var editController = function(pluralName, options) {
+  var beforeSave;
+
   options = options || {};
+  beforeSave = options.beforeSave || function(x){return x; };
+
   return ["$scope", "$http", "$resource", "$routeParams", "$window", function($scope, $http, $resource, $routeParams, $window) {
     var Entity;
 
@@ -68,7 +72,7 @@ var editController = function(pluralName, options) {
     }
 
     $scope.save = function() {
-      $scope.entity.$save(function(entity) {
+      beforeSave($scope.entity).$save(function(entity) {
         $window.location.href = '#/' + pluralName;
       });
     };
@@ -84,8 +88,20 @@ trackermanAdmin.controller("ProductEditController", editController("products", {
       pluralName: 'brands',
       field: 'name'
     }
+  },
+  beforeSave: function(product) {
+    product.retail_price = product.retailPrice;
+    product.wholesale_price = product.wholesalePrice;
+
+    return product;
   }
 }));
 
 trackermanAdmin.controller("ClientListController", listController("clients"));
-trackermanAdmin.controller("ClientEditController", editController("clients"));
+trackermanAdmin.controller("ClientEditController", editController("clients"), {
+  beforeSave: function(client) {
+    client.seller_type = client.sellerType;
+
+    return client;
+  }
+});
