@@ -3,11 +3,23 @@ var trackermanAdmin = angular.module("TrackermanAdmin");
 var baseUrl = "https://trackerman-api.herokuapp.com";
 
 var listController = function(pluralName) {
-  return ["$scope", "$http", function($scope, $http) {
+  return ["$scope", "$http", "$resource", function($scope, $http, $resource) {
     // le asigna acciones para q las pueda llamar desde el template
+    var Entity = $resource(baseUrl + "/v1/"+pluralName+"/:id", {id:"@id"}, {save: {method: 'PUT'}});
+
+    var updateList = function() {
+      // todo: mover a un service
+      $http.get(baseUrl + "/v1/" + pluralName)
+        .then(function(response) {
+          $scope.entities = response.data.results.map(wrapEntity);
+        });
+    };
+
     var wrapEntity = function(entity) {
       entity.delete = function() {
-        alert("No implementado :P");
+        Entity.delete({id: this.id}).$promise.then(function() {
+          updateList();
+        });
       };
 
       entity.edit = function() {
@@ -16,11 +28,8 @@ var listController = function(pluralName) {
 
       return entity;
     };
-    // todo: mover a un service
-    $http.get(baseUrl + "/v1/" + pluralName)
-      .then(function(response) {
-        $scope.entities = response.data.results.map(wrapEntity);
-      });
+
+    updateList();
   }];
 };
 
