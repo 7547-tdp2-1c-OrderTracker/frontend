@@ -22,10 +22,6 @@ var listController = function(pluralName) {
         });
       };
 
-      entity.edit = function() {
-        alert("No implementado :P");
-      };
-
       return entity;
     };
 
