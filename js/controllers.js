@@ -36,13 +36,7 @@ var editController = function(pluralName, options) {
   beforeSave = options.beforeSave || function(x){return x; };
 
   return ["$scope", "$http", "$resource", "$routeParams", "$window", function($scope, $http, $resource, $routeParams, $window) {
-    var Entity;
-
-    if ($routeParams.id === "new") {
-      Entity = $resource(baseUrl + "/v1/"+pluralName);
-    } else {
-      Entity = $resource(baseUrl + "/v1/"+pluralName+"/:id", {id:"@id"}, {save: {method: 'PUT'}});
-    }
+    var Entity = $resource(baseUrl + "/v1/"+pluralName+"/:id", {id:"@id"}, {save: {method: 'PUT'}});
 
     var processRelation = function(fieldName, relData) {
       $http.get(baseUrl + "/v1/" + relData.pluralName + "?limit=999999").then(function(response) {
@@ -63,13 +57,9 @@ var editController = function(pluralName, options) {
       }
     }
 
-    if ($routeParams.id !== "new") {
-      Entity.get({id: $routeParams.id}).$promise.then(function(entity) {
-        $scope.entity = entity;
-      });
-    } else {
-      $scope.entity = new Entity();
-    }
+    Entity.get({id: $routeParams.id}).$promise.then(function(entity) {
+      $scope.entity = entity;
+    });
 
     $scope.save = function() {
       beforeSave($scope.entity).$save(function(entity) {
@@ -105,3 +95,6 @@ trackermanAdmin.controller("ClientEditController", editController("clients"), {
     return client;
   }
 });
+
+trackermanAdmin.controller("BrandListController", listController("brands"));
+trackermanAdmin.controller("BrandEditController", editController("brands"));

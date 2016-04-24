@@ -18,6 +18,14 @@ trackermanAdmin.config(["$routeProvider", "$locationProvider", function($routePr
       templateUrl: 'templates/products/edit.html',
       controller: 'ProductEditController'
     })
+    .when('/brands', {
+      templateUrl: 'templates/brands/list.html',
+      controller: 'BrandListController'
+    })
+    .when('/brands/:id', {
+      templateUrl: 'templates/brands/edit.html',
+      controller: 'BrandEditController'
+    })    
     .otherwise({redirectTo : '/clients'});
 }]);
 

@@ -1,0 +1,19 @@
+<h1>Editar Marca</h1>
+
+<form>
+  <div class="form-group">
+    <label>Name:</label>
+    <input ng-model="entity.name" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Code:</label>
+    <input ng-model="entity.code" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Picture:</label>
+    <input ng-model="entity.picture" class="form-control"/>
+  </div>
+</form>
+
+<a href="{{backUrl}}" class="btn btn-primary">back</a>
+<button ng-show="entity" ng-click="save()" class="btn btn-primary">save</button>
