@@ -78,12 +78,6 @@ trackermanAdmin.controller("ProductEditController", editController("products", {
       pluralName: 'brands',
       field: 'name'
     }
-  },
-  beforeSave: function(product) {
-    product.retail_price = product.retailPrice;
-    product.wholesale_price = product.wholesalePrice;
-
-    return product;
   }
 }));
 
