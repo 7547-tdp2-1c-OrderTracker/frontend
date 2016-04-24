@@ -67,7 +67,7 @@ var editController = function(pluralName, options) {
       });
     };
 
-    $scope.backUrl = "/#" + pluralName;
+    $scope.backUrl = "#" + pluralName;
   }];
 };
 
