@@ -9,7 +9,7 @@ var listController = function(pluralName) {
 
     var updateList = function() {
       // todo: mover a un service
-      $http.get(baseUrl + "/v1/" + pluralName)
+      $http.get(baseUrl + "/v1/" + pluralName + "?limit=10000")
         .then(function(response) {
           $scope.entities = response.data.results.map(wrapEntity);
         });
