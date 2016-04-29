@@ -102,3 +102,6 @@ trackermanAdmin.controller("ClientEditController", editController("clients"), {
 
 trackermanAdmin.controller("BrandListController", listController("brands"));
 trackermanAdmin.controller("BrandEditController", editController("brands"));
+
+trackermanAdmin.controller("SellerListController", listController("sellers"));
+trackermanAdmin.controller("SellerEditController", editController("sellers"));

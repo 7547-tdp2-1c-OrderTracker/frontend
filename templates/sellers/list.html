@@ -1,0 +1,29 @@
+<h1>Lista de vendedores</h1>
+
+<a href="#/sellers/new" class="btn btn-primary">Nuevo</a>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Cuil</th>
+      <th>Domicilio</th>
+      <th>Telefono</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="seller in entities">
+      <td>{{seller.name}}</td>
+      <td>{{seller.lastname}}</td>
+      <td>{{seller.cuil}}</td>
+      <td>{{seller.address}}</td>
+      <td>{{seller.phone_number}}</td>
+      <td>
+        <a href="#/sellers/{{seller.id}}" class="btn btn-primary">Editar</a>
+        <button ng-click="seller.delete()"class="btn btn-danger">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
