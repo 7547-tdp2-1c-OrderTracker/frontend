@@ -36,6 +36,14 @@ trackermanAdmin.config(["$routeProvider", "$locationProvider", function($routePr
       templateUrl: 'templates/sellers/edit.html?version=' + version,
       controller: 'SellerEditController'
     })    
+    .when('/promotions', {
+      templateUrl: 'templates/promotions/list.html?version=' + version,
+      controller: 'PromotionListController'
+    })
+    .when('/promotions/:id', {
+      templateUrl: 'templates/promotions/edit.html?version=' + version,
+      controller: 'PromotionEditController'
+    })    
     .otherwise({redirectTo : '/clients'});
 }]);
 

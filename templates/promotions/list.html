@@ -1,0 +1,30 @@
+<h1>Promociones</h1>
+
+<a href="#/promotions/new" class="btn btn-primary">Nuevo</a>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Porcentaje</th>
+      <th>Fecha Inicio</th>
+      <th>Fecha Fin</th>
+      <th>Producto</th>
+      <th>Marca</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="promotion in entities">
+      <td>{{promotion.name}}</td>
+      <td>{{promotion.percent}}</td>
+      <td>{{promotion.begin_date}}</td>
+      <td>{{promotion.end_date}}</td>
+      <td>{{promotion.product_id}}</td>
+      <td>{{promotion.brand_id}}</td>
+      <td>
+        <a href="#/promotions/{{promotion.id}}" class="btn btn-primary">Editar</a>
+        <button ng-click="promotion.delete()"class="btn btn-danger">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

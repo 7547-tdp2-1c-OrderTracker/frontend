@@ -105,3 +105,6 @@ trackermanAdmin.controller("BrandEditController", editController("brands"));
 
 trackermanAdmin.controller("SellerListController", listController("sellers"));
 trackermanAdmin.controller("SellerEditController", editController("sellers"));
+
+trackermanAdmin.controller("PromotionListController", listController("promotions"));
+trackermanAdmin.controller("PromotionEditController", editController("promotions"));

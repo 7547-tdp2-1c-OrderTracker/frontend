@@ -1,0 +1,31 @@
+<h1>Editar Promocion</h1>
+
+<form>
+  <div class="form-group">
+    <label>Name:</label>
+    <input ng-model="entity.name" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Porcentaje:</label>
+    <input ng-model="entity.percent" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Fecha Inicio:</label>
+    <input ng-model="entity.begin_date" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>Fecha Fin:</label>
+    <input ng-model="entity.end_date" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>brand_id:</label>
+    <input ng-model="entity.brand_id" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label>product_id:</label>
+    <input ng-model="entity.product_id" class="form-control"/>
+  </div>
+</form>
+
+<a href="{{backUrl}}" class="btn btn-primary">back</a>
+<button ng-show="entity" ng-click="save()" class="btn btn-primary">save</button>
