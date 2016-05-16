@@ -1,6 +1,6 @@
 var trackermanAdmin = angular.module("TrackermanAdmin");
 
-window.baseUrl = "http://powerful-hollows-15939.herokuapp.com";
+window.baseUrl = "http://trackerman-api.herokuapp.com";
 
 var listController = function(pluralName) {
   return ["$scope", "$http", "$resource", function($scope, $http, $resource) {
